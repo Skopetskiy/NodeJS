@@ -19,8 +19,7 @@ app.get('/api/articles', function(req, res) {
             return res.send(articles);  
         } else {
             res.statusCode = 500;
-            log.error('Internal error(%d): %s',
-            res.statusCode, err.message);
+            log.error('Internal error(%d): %s', res.statusCode, err.message);
             return res.send({error: 'Server error'});
         }
     });
@@ -33,8 +32,7 @@ app.post('/api/articles', function (req, res) {
         description: req.body.description,
         images: req.body.images
     });
-
-article.save(function (err) {
+    article.save(function (err) {
         if (!err) {
             log.info("article created");
             return res.send({
