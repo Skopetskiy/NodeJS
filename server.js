@@ -33,7 +33,8 @@ app.post('/api/articles', function (req, res) {
         description: req.body.description,
         images: req.body.images
     });
-    article.save(function (err) {
+
+article.save(function (err) {
         if (!err) {
             log.info("article created");
             return res.send({
@@ -53,6 +54,7 @@ app.post('/api/articles', function (req, res) {
         }
     });
 });
+
 app.get('/api/articles/:id', function (req, res) {
     return ArticleModel.findById(req.params.id, function (err, article) {
         if (!article) {
@@ -68,6 +70,7 @@ app.get('/api/articles/:id', function (req, res) {
         }
     });
 });
+
 app.put('/api/articles/:id', function (req, res) {
     return ArticleModel.findById(req.params.id, function (err, article) {
         if (!article) {
@@ -96,6 +99,7 @@ app.put('/api/articles/:id', function (req, res) {
         });
     });
 });
+
 app.delete('/api/articles/:id', function (req, res) {
     return ArticleModel.findById(req.params.id, function (err, article) {
         if (!article) {
