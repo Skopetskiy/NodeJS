@@ -91,8 +91,7 @@ app.put('/api/articles/:id', function (req, res) {
                     res.statusCode = 500;
                     res.send({error: 'Server error'});
                 }
-                log.error('Internal error(%d): %s',
-                    res.statusCode, err.message);
+                log.error('Internal error(%d): %s', res.statusCode, err.message);
             }
         });
     });
@@ -110,8 +109,7 @@ app.delete('/api/articles/:id', function (req, res) {
                 return res.send({status: 'OK'});
             } else {
                 res.statusCode = 500;
-                log.error('Internal error(%d): %s',
-                res.statusCode, err.message);
+                log.error('Internal error(%d): %s', res.statusCode, err.message);
                 return res.send({error: 'Server error'});
             }
         });
