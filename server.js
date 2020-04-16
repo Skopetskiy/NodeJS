@@ -2,25 +2,25 @@ var express = require('express');
 var app = express();
 var config = require('./libs/config');
 var log = require('./libs/log')(module);
+var ArticleModel = require('./libs/mongoose').ArticleModel;
 
 app.listen(config.get('port'), function () {
     log.info('Express server listening on port ' + config.get('port'));
 });
 
-app.configure(function(){
+app.configure(function() {
     app.use(express.bodyParser());
     app.use(app.router);
 });
 
-var ArticleModel = require('./libs/mongoose').ArticleModel;
-app.get('/api/articles', function (req, res) {
+app.get('/api/articles', function(req, res) {
     return ArticleModel.find(function (err, articles) {
         if (!err) {
-            return res.send(articles);
+            return res.send(articles);  
         } else {
             res.statusCode = 500;
             log.error('Internal error(%d): %s',
-                res.statusCode, err.message);
+            res.statusCode, err.message);
             return res.send({error: 'Server error'});
         }
     });
@@ -109,7 +109,7 @@ app.delete('/api/articles/:id', function (req, res) {
             } else {
                 res.statusCode = 500;
                 log.error('Internal error(%d): %s',
-                    res.statusCode, err.message);
+                res.statusCode, err.message);
                 return res.send({error: 'Server error'});
             }
         });
